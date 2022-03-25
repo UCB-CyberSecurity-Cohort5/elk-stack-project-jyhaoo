@@ -1,0 +1,39 @@
+---
+  - name: Config Elk VM with Docker
+    hosts: elk
+    become: true
+    tasks:
+
+    - name: Config target VM to use more memory
+      ansible.posix.sysctl:
+        name: vm.max_map_count
+        value: 262144
+
+    - name: Install Docker.io
+      apt: 
+        name: docker.io
+        update_cache: yes
+        force_apt_get: yes
+        state: present
+
+    - name: Install Python3-Pip
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+    - name: Install Docker Module
+      pip:
+        name: docker
+        state: present
+
+    - name: Download and Launch a Docker Elk Container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
