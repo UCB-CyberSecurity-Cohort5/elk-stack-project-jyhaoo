@@ -179,7 +179,6 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 - Metricbeat records statistics from the monitored VMs
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
@@ -244,7 +243,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the playbook files to the Ansible Docker Container.
-- Update the Ansible host file to include the following:
+- Update the Ansible host file ```/etc/ansible/hosts``` to include the following:
 ```
 [webservers]
 10.0.0.4 ansible_python_interpreter=/usr/bin/python3
@@ -254,7 +253,7 @@ SSH into the control node and follow the steps below:
 [elkservers]
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
-- Run the playbook, and navigate to ```/etc/ansible``` to check that the installation worked as expected.
+- Run the playbook, and navigate to Kibana to check that the installation worked as expected.
 
 
 
