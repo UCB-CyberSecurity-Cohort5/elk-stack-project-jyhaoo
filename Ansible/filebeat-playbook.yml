@@ -22,7 +22,7 @@
       command: filebeat setup
 
     - name: Start Filebeat Service
-      command: filebeat -e
+      command: service filebeat start
 
     - name: Enable Filebeat on boot
       ansible.builtin.systemd:

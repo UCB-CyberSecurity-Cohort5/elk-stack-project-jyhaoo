@@ -26,5 +26,5 @@
     - name: Metric setup
       command: metricbeat setup
 
-    - name: Metric -e
-      command: metricbeat -e
+    - name: Start Metricbeat Service
+      command: service metricbeat start
