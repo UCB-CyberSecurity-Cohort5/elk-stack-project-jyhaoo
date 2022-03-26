@@ -113,7 +113,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
       command: filebeat setup
 
     - name: Start Filebeat Service
-      command: filebeat -e
+      command: service filebeat start
 
     - name: Enable Filebeat on boot
       ansible.builtin.systemd:
@@ -152,8 +152,8 @@ These files have been tested and used to generate a live ELK deployment on Azure
     - name: Metric setup
       command: metricbeat setup
 
-    - name: Metric -e
-      command: metricbeat -e
+    - name: Start Metricbeat Service
+      command: service metricbeat start
 ```
 
 This document contains the following details:
@@ -255,14 +255,16 @@ SSH into the control node and follow the steps below:
 ```
 - Run the playbook, and navigate to Kibana to check that the installation worked as expected.
 
-
-
-
-
-
-
-
-
+### Running the Playbooks
+- SSH into the Jumpbox ```~$ ssh RedAdmin@<Jump Bow Public IP>```
+- Start the Ansible Docker container ```~$ sudo docker start <Ansible Container>```
+- Attach to the Ansible Docker container ```~$ sudo docker attach <Ansible Container>```
+- Run the playbooks with the following commands:
+  - ```ansible-playbook /etc/ansible/install-dvma.yml```
+  - ```ansible-playbook /etc/ansible/install-elk.yml```
+  - ```ansible-playbook /etc/ansible/roles/filebeat-playbook.yml```
+  - ```ansible-playbook /etc/ansible/roles/metricbeat-playbook.yml```
+- After running the playbooks return to Kibana and view the Filebeat and Metricbeat data/reports within the dashboard. It should populate with data.
 
 
 
